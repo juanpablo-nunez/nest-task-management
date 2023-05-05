@@ -1,8 +1,8 @@
-import { TaskStatus } from 'src/enum/task.status.enum';
+import { StatusTypes } from '../dto/status-task.dto';
 
 export interface Task {
   id: string;
   title: string;
   description: string;
-  status: TaskStatus;
+  status: StatusTypes;
 }
