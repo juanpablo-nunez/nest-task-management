@@ -1,6 +1,12 @@
-import { StatusTypes } from './status-task.dto';
+import { IsIn, IsNotEmpty, IsOptional } from 'class-validator';
+import { StatusTypes, statusTypes } from './status-task.dto';
 
 export class GetTaskFilter {
-  status?: StatusTypes;
-  search?: string;
+  @IsNotEmpty()
+  @IsOptional()
+  @IsIn(statusTypes)
+  status: StatusTypes;
+  @IsNotEmpty()
+  @IsOptional()
+  search: string;
 }
