@@ -11,7 +11,6 @@ import {
 import { Task } from 'src/models/task.model';
 import { TaskService } from 'src/service/task/task.service';
 import { CreateTaskDto } from 'src/dto/create-task.dto';
-import { TaskStatus } from 'src/enum/task.status.enum';
 import { TaskStatusDto } from 'src/dto/status-task.dto';
 import { GetTaskFilter } from 'src/dto/get-task-filter.dto';
 

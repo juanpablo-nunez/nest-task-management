@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { TaskStatus } from 'src/enum/task.status.enum';
 import { Task } from 'src/models/task.model';
 import { v4 as uuid } from 'uuid';
 import { CreateTaskDto } from '../../dto/create-task.dto';
