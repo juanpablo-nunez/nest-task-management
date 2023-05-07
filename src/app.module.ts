@@ -1,10 +1,23 @@
 import { Module } from '@nestjs/common';
 import { ServiceModule } from './service/service.module';
 import { ControllerModule } from './controller/controller.module';
-import { CreateTaskDto } from './dto/create-task.dto';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [ServiceModule, ControllerModule, CreateTaskDto],
+  imports: [
+    ServiceModule,
+    ControllerModule,
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'task2023',
+      database: 'postgres',
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
+  ],
   controllers: [],
   providers: [],
 })
