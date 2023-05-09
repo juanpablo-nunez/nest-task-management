@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTaskDto } from '../../dto/create-task.dto';
-import { Like, Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { TaskEntity } from 'src/persistance/task.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TaskStatusDto } from 'src/dto/status-task.dto';
@@ -25,8 +25,8 @@ export class TaskService {
     if (search) {
       return this.taskRepository.find({
         where: [
-          { title: Like(`%${search}%`) },
-          { description: Like(`%${search}%`) },
+          { title: ILike(`%${search}%`) },
+          { description: ILike(`%${search}%`) },
         ],
       });
     }
