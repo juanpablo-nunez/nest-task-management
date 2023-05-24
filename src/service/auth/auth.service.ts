@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AuthEntity } from 'src/persistance/user.entity';
 import { Repository } from 'typeorm';
@@ -12,6 +16,13 @@ export class AuthService {
   ) {}
   sigUp(userDto: UserDto): Promise<AuthEntity> {
     const user = this.authRepository.create(userDto);
-    return this.authRepository.save(user);
+    try {
+      return this.authRepository.save(user);
+    } catch (error) {
+      if (error.code === '23505') {
+        throw new ConflictException('Username already exists!');
+      }
+      throw new InternalServerErrorException();
+    }
   }
 }

@@ -6,7 +6,7 @@ export class AuthEntity {
   @PrimaryGeneratedColumn('uuid', { name: 'id' })
   id: string;
 
-  @Column({ name: 'user_name' })
+  @Column({ name: 'user_name', unique: true })
   @IsString()
   username: string;
 
