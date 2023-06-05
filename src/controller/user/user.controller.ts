@@ -11,7 +11,7 @@ export class userController {
   }
 
   @Post('/signin')
-  async signin(@Body() authCredential: UserDto): Promise<string> {
+  async signin(@Body() authCredential: UserDto) {
     return await this.authService.loginUser(authCredential);
   }
 }
