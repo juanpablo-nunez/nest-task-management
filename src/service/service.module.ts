@@ -2,12 +2,23 @@ import { Module } from '@nestjs/common';
 import { TaskService } from './task/task.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TaskEntity } from 'src/persistance/task.entity';
-import { AuthService } from './auth/auth.service';
-import { AuthEntity } from 'src/persistance/user.entity';
+import { UserService } from './user/user.service';
+import { UserEntity } from 'src/persistance/user.entity';
+import { PassportModule } from '@nestjs/passport';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([TaskEntity, AuthEntity], 'postgres')],
-  providers: [TaskService, AuthService],
-  exports: [TaskService, AuthService],
+  imports: [
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    JwtModule.register({
+      secret: 'topScrete51',
+      signOptions: {
+        expiresIn: 3600,
+      },
+    }),
+    TypeOrmModule.forFeature([TaskEntity, UserEntity], 'postgres'),
+  ],
+  providers: [TaskService, UserService],
+  exports: [TaskService, UserService],
 })
 export class ServiceModule {}

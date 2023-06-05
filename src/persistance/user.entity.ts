@@ -2,7 +2,7 @@ import { IsString } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('user')
-export class AuthEntity {
+export class UserEntity {
   @PrimaryGeneratedColumn('uuid', { name: 'id' })
   id: string;
 

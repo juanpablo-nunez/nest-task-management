@@ -1,7 +1,6 @@
 import {
   IsNotEmpty,
   IsString,
-  MATCHES,
   Matches,
   MaxLength,
   MinLength,
@@ -17,7 +16,9 @@ export class UserDto {
   @IsString()
   @MinLength(8)
   @MaxLength(32)
-  @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/)
+  @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
+    message: 'Password too weak',
+  })
   @IsNotEmpty()
   password: string;
 }
